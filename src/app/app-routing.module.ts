@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import {
+  DynamicFormBuilderComponent,
+  FormContainerComponent,
+  ReactiveFormComponent,
+  TemplateFormComponent
+} from './form-demo/components'
 
 const routes: Routes = [
   {
@@ -13,6 +19,24 @@ const routes: Routes = [
   {
     path: 'not-found',
     loadChildren: () => import('./not-found').then(m => m.NotFoundModule)
+  },
+  {
+    path: 'form-demo',
+    component: FormContainerComponent,
+    children: [
+      {
+        path: 'template-form',
+        component: TemplateFormComponent
+      },
+      {
+        path: 'reactive-form',
+        component: ReactiveFormComponent
+      },
+      {
+        path: 'form-builder',
+        component: DynamicFormBuilderComponent
+      }
+    ]
   },
   {
     path: '',

@@ -1,0 +1,46 @@
+<p>reactive-form works!</p>
+
+<div class="form-wrapper">
+  <input [formControl]="name" type="text" placeholder="reactive form input" />
+  <button (click)="handleChangeFormControlValue()">set value to foo bar</button>
+  <div>{{ name.value }}</div>
+
+  <h3>form group example</h3>
+  <div>form status: {{ accountInfoFormGroup.status }}</div>
+  <form [formGroup]="accountInfoFormGroup" (ngSubmit)="handleFormGroupChange()">
+    <input formControlName="username" type="text" placeholder="username" />
+    <input formControlName="password" type="password" placeholder="password" />
+    <p
+      *ngIf="
+        accountInfoFormGroup.errors?.identityMatched &&
+        (accountInfoFormGroup.dirty || accountInfoFormGroup.touched)
+      "
+    >
+      username or password is wrong
+    </p>
+    <div>address:</div>
+    <div class="address-wrapper" formGroupName="address">
+      <input formControlName="street" type="text" />
+      <input formControlName="city" type="text" />
+    </div>
+
+    <button type="submit" [disabled]="!accountInfoFormGroup.valid">submit</button>
+
+    <p>dynamic form example</p>
+
+    <div formArrayName="aliases">
+      <h3>Aliases</h3>
+      <button type="button" (click)="addAliases()">add aliases</button>
+
+      <div *ngFor="let alias of aliases.controls; let i = index">
+        <label>
+          <span>alias: </span>
+          <input type="text" [formControlName]="i" />
+        </label>
+      </div>
+    </div>
+  </form>
+  <div>form value: {{ accountInfoFormGroup.value | json }}</div>
+  <div>form errors: {{ accountInfoFormGroup.errors | json }}</div>
+  <div (click)="handlePatchFormGroupValue()">click here to patch form group value</div>
+</div>

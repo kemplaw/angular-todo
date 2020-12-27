@@ -1,0 +1,37 @@
+<p>template-form works!</p>
+<form class="form-wrapper" #accountInfoForm="ngForm" appIdentityMatched>
+  <input
+    type="text"
+    name="username"
+    placeholder="username"
+    [(ngModel)]="accountInfo.username"
+    #username="ngModel"
+    required
+    minlength="4"
+    appForbiddenName="bob"
+  />
+
+  <input
+    type="password"
+    name="password"
+    placeholder="password"
+    #password="ngModel"
+    [(ngModel)]="accountInfo.password"
+    required
+    minlength="4"
+  />
+
+  <div *ngIf="username.invalid && (username.dirty || username.touched)" class="form-errors-wrapper">
+    <p *ngIf="username.errors.required">username required</p>
+    <p *ngIf="username.errors.minlength">invalid username length</p>
+    <p *ngIf="username.errors.forbiddenName">invalid username</p>
+  </div>
+
+  <div
+    *ngIf="
+      accountInfoForm.errors?.identityMatched && (accountInfoForm.touched || accountInfoForm.dirty)
+    "
+  >
+    username or password is wrong
+  </div>
+</form>
