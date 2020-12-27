@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
+import { Todo, TodoStatus } from 'src/app/types'
 
 @Component({
   selector: 'app-todo-item',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
+  @Input() todo: Todo
+  todoStatusCheckboxValue = false
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    if (this.todo) {
+      this.todoStatusCheckboxValue = this.todo.status === TodoStatus.completed
+    }
   }
 
+  handleChange() {
+    this.todoStatusCheckboxValue = !this.todoStatusCheckboxValue
+  }
 }

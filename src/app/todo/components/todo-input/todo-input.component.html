@@ -1,1 +1,3 @@
-<p>todo-input works!</p>
+<div class="todo-input-wrapper">
+  <input [(ngModel)]="todoValue" type="text" placeholder="please enter your todo" (keyup)="handleEnterTodo($event)" />
+</div>

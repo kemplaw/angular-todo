@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { TabGroupComponent } from './components'
+import { TabGroupComponent, TabItemComponent } from './components'
 import {
   ForbiddenNameDirective,
   HighlightDirective,
@@ -15,7 +15,8 @@ import { AccountLoginValidatorService } from './services'
     HighlightDirective,
     ForbiddenNameDirective,
     IdentityMatchedValidatorDirective,
-    TabGroupComponent
+    TabGroupComponent,
+    TabItemComponent
   ],
   exports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { AccountLoginValidatorService } from './services'
     HighlightDirective,
     ForbiddenNameDirective,
     IdentityMatchedValidatorDirective,
-    TabGroupComponent
+    TabGroupComponent,
+    TabItemComponent
   ],
   providers: [AccountLoginValidatorService]
 })

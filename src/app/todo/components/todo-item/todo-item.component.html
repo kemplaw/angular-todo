@@ -1,1 +1,4 @@
-<p>todo-item works!</p>
+<div class="todo-item-wrapper">
+  <input type="checkbox" [checked]="todoStatusCheckboxValue" (change)="handleChange()" />
+  <span>{{ todo.content }}</span>
+</div>
