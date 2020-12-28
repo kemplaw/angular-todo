@@ -7,6 +7,7 @@ import {
   TemplateFormComponent
 } from './form-demo/components'
 import { RxjsDemoComponent } from './rxjs-demo'
+import { AuthGuard } from './shared'
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    loadChildren: () => import('./todo').then(m => m.TodoModule)
+    loadChildren: () => import('./todo').then(m => m.TodoModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'form-demo',

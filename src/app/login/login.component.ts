@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
+import { AuthService } from '../shared'
 import { UserInfo } from '../types'
-import { LoginService } from './services'
 
 @Component({
   selector: 'app-login',
@@ -15,14 +15,18 @@ export class LoginComponent {
 
   valid: boolean
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   handleLogin() {
-    const valid = this.loginService.login(this.userInfo)
-    this.valid = valid
+    this.authService.login().subscribe(() => {
+      if (this.authService.isLoggedIn) {
+        const redirectUrl = '/app'
+        this.router.navigate([redirectUrl])
+      }
+    })
+  }
 
-    if (!valid) return false
-
-    return this.router.navigateByUrl('/app')
+  handleLogout() {
+    this.authService.logout()
   }
 }
