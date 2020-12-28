@@ -6,6 +6,7 @@ import {
   ReactiveFormComponent,
   TemplateFormComponent
 } from './form-demo/components'
+import { RxjsDemoComponent } from './rxjs-demo'
 
 const routes: Routes = [
   {
@@ -15,10 +16,6 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () => import('./todo').then(m => m.TodoModule)
-  },
-  {
-    path: 'not-found',
-    loadChildren: () => import('./not-found').then(m => m.NotFoundModule)
   },
   {
     path: 'form-demo',
@@ -37,6 +34,14 @@ const routes: Routes = [
         component: DynamicFormBuilderComponent
       }
     ]
+  },
+  {
+    path: 'rxjs-demo',
+    component: RxjsDemoComponent
+  },
+  {
+    path: 'not-found',
+    loadChildren: () => import('./not-found').then(m => m.NotFoundModule)
   },
   {
     path: '',
