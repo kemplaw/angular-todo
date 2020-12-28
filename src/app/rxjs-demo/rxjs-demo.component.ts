@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { of } from 'rxjs'
+import { BehaviorSubject, of } from 'rxjs'
+import { map, switchMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-rxjs-demo',
@@ -8,6 +9,7 @@ import { of } from 'rxjs'
 })
 export class RxjsDemoComponent implements OnInit {
   observableData = of(1, 'a', { a: 1 })
+  willSwitchMappedData = of(1, 2, 3)
 
   constructor() {}
 
@@ -27,5 +29,9 @@ export class RxjsDemoComponent implements OnInit {
         console.log('completed')
       }
     })
+  }
+
+  handleSwitchMap() {
+    this.willSwitchMappedData.pipe(switchMap(i => of(2 * i))).subscribe(v => console.log(v)) // 2, 4, 6
   }
 }
