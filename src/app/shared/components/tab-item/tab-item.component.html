@@ -1,3 +1,8 @@
 <div class="tab-item-wrapper">
-  {{ tab.content }}
+  <span *ngIf="tab.content; else elseBlock" (click)="handleChange()">
+    {{ tab.content }}
+  </span>
+  <ng-template #elseBlock>
+    <ng-content></ng-content>
+  </ng-template>
 </div>
