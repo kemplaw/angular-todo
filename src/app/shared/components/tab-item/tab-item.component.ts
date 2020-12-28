@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { TabFilterStatus } from 'src/app/types'
+import { TabControlService } from '../tab-group/services'
 
 export interface Tab {
   id: TabFilterStatus
@@ -14,7 +15,11 @@ export interface Tab {
 export class TabItemComponent implements OnInit {
   @Input() tab: Tab
 
-  constructor() {}
+  constructor(private tabControlService: TabControlService) {}
 
   ngOnInit(): void {}
+
+  handleChange() {
+    this.tabControlService.changeTabFilter(this.tab.id)
+  }
 }
