@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core'
-import { Tab } from 'src/app/shared'
-import { TabFilterStatus } from 'src/app/types'
+import { Observable, of } from 'rxjs'
+import { Tab, TabFilterStatus } from 'src/app/shared'
 
 @Injectable()
 export class TabService {
   constructor() {}
 
-  getTab(): Tab[] {
-    return [
+  getTab(): Observable<Tab[]> {
+    return of([
       {
         id: TabFilterStatus.all,
         content: 'all'
@@ -20,6 +20,6 @@ export class TabService {
         id: TabFilterStatus.completed,
         content: 'completed'
       }
-    ]
+    ])
   }
 }

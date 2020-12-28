@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { Tab } from '../shared'
-import { Todo } from '../types'
+import { Observable, of } from 'rxjs'
+import { Tab, Todo } from '../shared'
 import { TabService, TodoService } from './services'
 
 @Component({
@@ -9,11 +9,15 @@ import { TabService, TodoService } from './services'
   providers: [TabService, TodoService]
 })
 export class TodoComponent {
-  tabs: Tab[] = []
-  todoList: Todo[] = []
+  tabs$: Observable<Tab[]> = of([])
+  todoList$: Observable<Todo[]> = of([])
 
   constructor(private tabService: TabService, private todoService: TodoService) {
-    this.tabs = this.tabService.getTab()
-    this.todoList = this.todoService.getTodoList()
+    this.tabs$ = this.tabService.getTab()
+    this.todoList$ = this.todoService.getTodoList()
+  }
+
+  handleAddTodo(todoContent: string) {
+    this.todoService.addTodo(todoContent)
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { UserInfo } from 'src/app/types'
+import { UserInfo } from 'src/app/shared'
 
 @Component({
   selector: 'app-template-form',

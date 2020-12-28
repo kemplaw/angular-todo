@@ -1,8 +1,12 @@
 <div class="todo-wrapper">
   <app-tab-group>
-    <app-tab-item *ngFor="let tab of tabs" [tab]="tab"></app-tab-item>
+    <app-tab-item *ngFor="let tab of tabs$ | async" [tab]="tab"></app-tab-item>
   </app-tab-group>
-  <app-todo-input></app-todo-input>
-  <app-todo-item *ngFor="let todo of todoList" [todo]="todo" appHighlight="red"></app-todo-item>
+  <app-todo-input (addTodo)="handleAddTodo($event)"></app-todo-input>
+  <app-todo-item
+    *ngFor="let todo of todoList$ | async"
+    [todo]="todo"
+    appHighlight="red"
+  ></app-todo-item>
   <app-todo-helper></app-todo-helper>
 </div>

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core'
-import { TabFilterStatus } from 'src/app/types'
+import { TabFilterStatus } from '../model'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TabControlService {
   tabFilter: TabFilterStatus
 
-  constructor() {}
-
   changeTabFilter(tabFilter: TabFilterStatus) {
     this.tabFilter = tabFilter
-    console.log(tabFilter)
   }
 }

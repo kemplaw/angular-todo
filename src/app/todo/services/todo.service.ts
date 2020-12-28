@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core'
-import { Todo, TodoStatus } from 'src/app/types'
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs'
+import { Todo, TodoStatus } from 'src/app/shared'
 
+let todoId = 1
 @Injectable()
 export class TodoService {
-  constructor() {}
+  private todoList: Todo[] = []
+  private todoList$ = new BehaviorSubject<Todo[]>([])
 
-  getTodoList(): Todo[] {
-    return [
-      {
-        id: 1,
-        content: 'todo 1',
-        status: TodoStatus.unCompleted
-      },
-      {
-        id: 1,
-        content: 'todo 2',
-        status: TodoStatus.completed
-      }
-    ]
+  getTodoList(): Observable<Todo[]> {
+    return this.todoList$.asObservable()
+  }
+
+  addTodo(todoContent: string) {
+    const newTodo: Todo = {
+      id: todoId++,
+      content: todoContent,
+      status: TodoStatus.unCompleted
+    }
+
+    this.todoList.unshift(newTodo)
+    this.todoList$.next([...this.todoList])
   }
 }

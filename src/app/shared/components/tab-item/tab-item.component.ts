@@ -1,11 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { TabFilterStatus } from 'src/app/types'
-import { TabControlService } from '../tab-group/services'
-
-export interface Tab {
-  id: TabFilterStatus
-  content: string
-}
+import { Tab } from '../../model'
+import { TabControlService } from '../../services'
 
 @Component({
   selector: 'app-tab-item',

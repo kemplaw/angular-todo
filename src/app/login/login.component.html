@@ -1,13 +1,13 @@
-<div class="login-wrapper">
+<form class="login-wrapper" [formGroup]="userInfoForm">
   <div class="form-group">
     <label>username</label>
-    <input type="text" class="form-control" />
+    <input type="text" class="form-control" formControlName="username" />
   </div>
   <div class="form-group">
     <label>password</label>
-    <input type="password" class="form-control" />
+    <input type="password" class="form-control" formControlName="password" />
   </div>
 
-  <button type="button" (click)="handleLogin()">login</button>
+  <button type="submit" [disabled]="submitDisabled" (click)="handleLogin()">login</button>
   <button type="button" (click)="handleLogout()">logout</button>
-</div>
+</form>

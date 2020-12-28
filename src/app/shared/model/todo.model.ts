@@ -1,7 +1,6 @@
-export interface UserInfo {
-  username: string
-  password?: string
-  expire?: number
+export interface Tab {
+  id: TabFilterStatus
+  content: string
 }
 
 export enum TabFilterStatus {

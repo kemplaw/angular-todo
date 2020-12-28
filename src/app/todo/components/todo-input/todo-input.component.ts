@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 
 @Component({
   selector: 'app-todo-input',
@@ -6,16 +6,17 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./todo-input.component.css']
 })
 export class TodoInputComponent implements OnInit {
-  todoValue: string
+  @Output() addTodo: EventEmitter<string> = new EventEmitter()
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  handleEnterTodo(e: any) {
+  handleEnterTodo(e: KeyboardEvent) {
+    const target = e.target as HTMLInputElement
     if (e.key.toLowerCase() === 'enter') {
-      console.log(this.todoValue)
-      this.todoValue = ''
+      this.addTodo.emit(target.value)
+      target.value = ''
     }
   }
 }
